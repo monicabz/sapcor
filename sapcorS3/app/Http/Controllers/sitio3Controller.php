@@ -130,11 +130,36 @@ class sitio3Controller extends Controller
 
         $datosDomicilio = array($callePaciente, $numeroPaciente, $coloniaPaciente, $codigoPostalPaciente);
         $datosPaciente = array($nombrePaciente, $primerApellidoPaciente, $segundoApellidoPaciente, date("Y-m-d", strtotime($fechaNacimiento)), $primerContacto, $estudios, $necesidadEspecial, $activo);
-        $datosEmpleos = array();
-        $datosAntecedentes = array();
-        $datosPadecimientosCronicos = array(array($enfermedadCronica));
-        $datosMedicamentos = array(array($medicamento, $fechaInicioMedicina, $fechaFinMedicina, $frecuenciaMedicina, $dosisMedicina));
-        $datosDrogas = array();
+        if ($lugarTrabajo == '') {
+            $datosEmpleos = array();
+        }
+        else {
+            $datosEmpleos = array(array($puestoTrabajo, $lugarTrabajo, $horaEntrada, $horaSalida));
+        }
+        if ($motivoAntecedente == '') {
+            $datosAntecedentes = array();
+        }
+        else {
+            $datosAntecedentes = array($motivoAntecedente);
+        }
+        if ($enfermedadCronica == '') {
+            $datosPadecimientosCronicos = array();
+        }
+        else {
+            $datosPadecimientosCronicos = array(array($enfermedadCronica));
+        }
+        if ($medicamento == '') {
+            $datosMedicamentos = array();
+        }
+        else {
+            $datosMedicamentos = array(array($medicamento, date("Y-m-d", strtotime($fechaInicioMedicina)), date("Y-m-d", strtotime($fechaFinMedicina)), $frecuenciaMedicina, $dosisMedicina));
+        }
+        if ($droga == '') {
+            $datosDrogas = array();
+        }
+        else {
+            $datosDrogas = array(array($droga, date("Y-m-d", strtotime($fechaInicioDroga)), date("Y-m-d", strtotime($fechaFinDroga)), $dosisDroga, $frecuenciaDroga));
+        }
         $datosContactos = array(
             array(
                 "datosDomicilio" => array($calleContacto, $numeroContacto, $coloniaContacto, $codigoPostalContacto),

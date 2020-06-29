@@ -274,7 +274,7 @@ class transactions
                 $buscarDroga->execute(array(':nombreDroga' => $datosDroga[0]));
                 $drogaId = $buscarDroga->fetch()[0];
 
-                $insertarPacienteDroga = $conS1->prepare("INSERT INTO paciente_droga (paciente_id, droga_id, fechaInicio, fechaFin, dosis, frecuencia) VALUES (?,?,?,?,?,?");
+                $insertarPacienteDroga = $conS1->prepare("INSERT INTO paciente_droga (paciente_id, droga_id, fechaInicio, fechaFin, dosis, frecuencia) VALUES (?,?,?,?,?,?)");
                 $insertarPacienteDroga->execute(array($nuevoPacienteId, $drogaId, $datosDroga[1], $datosDroga[2], $datosDroga[3], $datosDroga[4]));
             }
 
@@ -293,8 +293,8 @@ class transactions
                 else{
                     $insertarDomicilioContacto = $conS3->prepare("INSERT INTO domicilio (calle, numero, colonia, codigoPostal) VALUES (?,?,?,?)");
                     $insertarDomicilioContacto->execute($datosContacto["datosDomicilio"]);
-                    $buscarDomiciliocontacto->execute($datosContacto["datosDomicilio"]);
-                    $domicilioContactoId = $buscarDomiciliocontacto->fetch()[0];
+                    $buscarDomicilioContacto->execute($datosContacto["datosDomicilio"]);
+                    $domicilioContactoId = $buscarDomicilioContacto->fetch()[0];
                 }
 
 
